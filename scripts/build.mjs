@@ -673,7 +673,7 @@ async function writeHomePage({ site, posts }) {
           </div>
         </div>
         <div class="hero-media">
-          <img src="${withBase("/media/quantum-lattice.png", site)}" alt="Abstract lattice of entangled qubit paths" loading="eager" decoding="async">
+          <img src="${withBase("/favicon.svg", site)}" alt="${escapeAttr(site.title)} mark" loading="eager" decoding="async">
         </div>
       </section>
       <section class="section">
@@ -851,7 +851,7 @@ function layout({ site, title, description, url, active, content, hasMath = fals
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${escapeAttr(canonical)}">
-  <meta property="og:image" content="${escapeAttr(absoluteUrl("/media/quantum-lattice.png", site))}">
+  <meta property="og:image" content="${escapeAttr(absoluteUrl("/favicon.svg", site))}">
   <link rel="icon" href="${withBase("/favicon.svg", site)}" type="image/svg+xml">
   <link rel="alternate" href="${withBase("/rss.xml", site)}" type="application/rss+xml" title="${escapeAttr(site.title)}">
   <link rel="stylesheet" href="${withBase("/styles/site.css", site)}">
@@ -870,14 +870,12 @@ function layout({ site, title, description, url, active, content, hasMath = fals
 
 function renderHeader(site, active) {
   const nav = site.nav.map((item) => {
-    const current = active === item.href || (item.href !== "/" && active.startsWith(item.href));
-    return `<a href="${withBase(item.href, site)}"${current ? ' aria-current="page"' : ""}>${escapeHtml(item.label)}</a>`;
+    return `<a href="${withBase(item.href, site)}">${escapeHtml(item.label)}</a>`;
   }).join("");
 
   return `<header class="site-header">
     <div class="header-inner">
       <a class="brand" href="${withBase("/", site)}" aria-label="${escapeAttr(site.title)} home">
-        <span class="brand-mark" aria-hidden="true">&psi;</span>
         <span>${escapeHtml(site.title)}</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">

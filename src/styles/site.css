@@ -148,19 +148,6 @@ input,
   text-decoration: none;
 }
 
-.brand-mark {
-  align-items: center;
-  background: var(--surface-raised);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  color: var(--accent-strong);
-  display: inline-flex;
-  font-family: ui-serif, Georgia, serif;
-  height: 2rem;
-  justify-content: center;
-  width: 2rem;
-}
-
 .nav {
   align-items: center;
   display: flex;
@@ -178,7 +165,6 @@ input,
   text-decoration: none;
 }
 
-.nav a[aria-current="page"],
 .nav a:hover,
 .theme-toggle:hover {
   background: var(--surface-soft);
@@ -285,10 +271,12 @@ input,
 
 .hero-media img {
   aspect-ratio: 4 / 3;
+  background: var(--surface-raised);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  object-fit: cover;
+  object-fit: contain;
+  padding: clamp(2rem, 8vw, 5rem);
   width: 100%;
 }
 
