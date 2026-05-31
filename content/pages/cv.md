@@ -1,43 +1,31 @@
 ---
 title: "CV"
-summary: "Curriculum vitae, contact details, education, and professional experience."
+summary: "Academic profile, research interests, education, and contact links."
 slug: "cv"
 ---
 
-## Contact
+{{ cv-profile image="/media/profile.svg" name="Trong (Erio) Duong" title="PhD student in quantum computing" affiliation="CATS, RWTH Aachen University" location="Aachen, Germany" links="Email|mailto:duong@cats.rwth-aachen.de;GitHub|https://github.com/MyEntangled;LinkedIn|https://www.linkedin.com/;Institution|https://www.cats.rwth-aachen.de/" }}
 
-- Name: Trong Duong, but I also go by Erio.
-- Email: duong(at)cats(dot)rwth-aachen(dot)de
-- Websites: 
-- ORCID: Add ORCID iD
-- GitHub: Add GitHub profile
-- Location: Add city or institution
+## Professional Summary
+
+I am a PhD student working on quantum computing, with interests around quantum algorithms, quantum information, and the mathematical structures that make quantum models interpretable. This site is where I keep research notes, longer-form explanations, and links between ideas that I expect to revisit.
+
+{{ cv-download href="/media/erio-trong-duong-cv.md" label="Download CV" }}
 
 ## Education
 
-- Add degree, school, department, location, and dates
-- Add degree, school, department, location, and dates
+{{ cv-education degree="PhD student in Quantum Computing" school="RWTH Aachen University" meta="Aachen, Germany" detail="Research at the intersection of quantum computation, algorithms, and mathematical modeling." }}
 
-## Work Experience
+{{ cv-education degree="Previous degree" school="Add university or institute" meta="Add location and dates" detail="Add thesis topic, specialization, supervisor, or notable coursework." }}
 
-- Add role, organization, location, and dates
-- Add role, organization, location, and dates
+## Interests
 
-## Research Interests
+{{ cv-chips items="quantum computing;quantum algorithms;quantum information;quantum error correction;quantum lattice Boltzmann methods;mathematical modeling;scientific computing" }}
 
-- quantum computing
-- quantum error correction
-- quantum information
-- mathematical and computational methods
+## My Research
 
-## Teaching And Service
+My research approach is to treat quantum algorithms as mathematical objects first and implementations second. I like to understand which structure a method is exploiting, which assumptions are doing real work, and where the boundary sits between a clean theoretical model and something that can survive hardware constraints.
 
-- Add teaching assistantships, courses, mentorship, reviewing, or academic service
+I am especially interested in research notes that make hidden dependencies explicit: how a representation affects complexity, how an error model changes the interpretation of a result, and how different viewpoints of the same quantum process can suggest different algorithms.
 
-## Awards And Fellowships
-
-- Add awards, scholarships, fellowships, or recognitions
-
-## Selected Skills
-
-- Add programming languages, research tools, lab methods, languages, or technical specialties
+The goal is not only to collect results, but to build a durable map of the ideas I use repeatedly.

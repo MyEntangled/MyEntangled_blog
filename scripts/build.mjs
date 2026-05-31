@@ -601,8 +601,70 @@ function renderDirective(directive, ctx) {
     return `<figure class="media-block"><button class="lite-video" type="button" data-youtube="${escapeAttr(id)}" data-title="${escapeAttr(title)}"><img src="${escapeAttr(thumbnail)}" alt="" loading="lazy" decoding="async"><span class="play-badge">Play video</span></button>${caption}</figure>`;
   }
 
+  if (directive.name === "cv-profile") {
+    const image = assetUrl(directive.attrs.image || "/media/profile.svg", ctx.site);
+    const name = directive.attrs.name || ctx.item.title;
+    const title = directive.attrs.title || "";
+    const affiliation = directive.attrs.affiliation || "";
+    const location = directive.attrs.location || "";
+    const links = parseCvLinks(directive.attrs.links || "");
+    return `<section class="cv-profile">
+      <div class="cv-photo-wrap"><img class="cv-photo" src="${escapeAttr(image)}" alt="${escapeAttr(name)} profile picture" loading="eager" decoding="async"></div>
+      <div class="cv-profile-body">
+        <p class="eyebrow">Academic CV</p>
+        <h1>${escapeHtml(name)}</h1>
+        ${title ? `<p class="cv-role">${escapeHtml(title)}</p>` : ""}
+        ${affiliation || location ? `<p class="cv-affiliation">${[affiliation, location].filter(Boolean).map(escapeHtml).join(" &middot; ")}</p>` : ""}
+        ${links.length ? `<div class="cv-link-grid">${links.map((link) => renderCvLink(link)).join("")}</div>` : ""}
+      </div>
+    </section>`;
+  }
+
+  if (directive.name === "cv-download") {
+    const href = assetUrl(directive.attrs.href || "/media/erio-trong-duong-cv.md", ctx.site);
+    const label = directive.attrs.label || "Download CV";
+    return `<p class="cv-actions"><a class="button primary" href="${escapeAttr(href)}" download>${escapeHtml(label)}</a></p>`;
+  }
+
+  if (directive.name === "cv-education") {
+    const degree = directive.attrs.degree || "Degree";
+    const school = directive.attrs.school || "School";
+    const meta = directive.attrs.meta || "";
+    const detail = directive.attrs.detail || "";
+    return `<article class="cv-education-card">
+      ${meta ? `<p class="cv-card-meta">${renderInline(meta, ctx)}</p>` : ""}
+      <h3>${renderInline(degree, ctx)}</h3>
+      <p class="cv-school">${renderInline(school, ctx)}</p>
+      ${detail ? `<p>${renderInline(detail, ctx)}</p>` : ""}
+    </article>`;
+  }
+
+  if (directive.name === "cv-chips") {
+    const chips = String(directive.attrs.items || "").split(";").map((item) => item.trim()).filter(Boolean);
+    return `<div class="cv-chip-list">${chips.map((chip) => `<span class="cv-chip">${escapeHtml(chip)}</span>`).join("")}</div>`;
+  }
+
   warnings.push(`Unknown directive "{{ ${directive.name} }}" in ${ctx.item.sourcePath}.`);
   return "";
+}
+
+function parseCvLinks(raw) {
+  return String(raw)
+    .split(";")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const [label, href] = entry.split("|").map((part) => part.trim());
+      return { label: label || href, href: href || label };
+    })
+    .filter((link) => link.href);
+}
+
+function renderCvLink(link) {
+  const initial = (link.label || "L").trim().charAt(0).toUpperCase();
+  const isExternal = /^(https?:)?\/\//.test(link.href);
+  const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : "";
+  return `<a class="cv-link" href="${escapeAttr(link.href)}" data-initial="${escapeAttr(initial)}"${target}><span>${escapeHtml(link.label)}</span></a>`;
 }
 
 function renderFootnotes(ctx) {
@@ -738,7 +800,7 @@ async function writeContentPages({ site, items }) {
       </header>`;
 
     const content = `
-      <main id="main" class="article-shell">
+      <main id="main" class="article-shell page-${escapeAttr(item.slug)}">
         <article class="article">
           ${header}
           <div class="prose">${item.html}${renderBacklinks(item, site)}</div>
