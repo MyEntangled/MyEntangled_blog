@@ -373,16 +373,15 @@ input,
 }
 
 .page-cv {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 1040px;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.35fr);
+  max-width: var(--wide);
 }
 
 .page-cv .article {
   max-width: none;
 }
 
-.page-cv .article-header,
-.page-cv .side-panel {
+.page-cv .article-header {
   display: none;
 }
 
