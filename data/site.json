@@ -5,7 +5,7 @@
   "language": "en",
   "url": "https://myentangled.github.io",
   "basePath": "/blog",
-  "repo": "https://github.com/MyEntangled/MyEntangled_blog",
+  "repo": "https://github.com/MyEntangled/blog",
   "accent": "#2f6f73",
   "nav": [
     { "label": "Posts", "href": "/posts/" },
