@@ -36,5 +36,12 @@
     "venue": "arXiv:2604.09997",
     "year": "2026",
     "url": "https://arxiv.org/abs/2604.09997"
+  },
+  "duong2022qnas": {
+    "authors": "Trong Duong, Sang Truong, Minh Tam, Bao Bach, Ju-Young Ryu, and June-Koo Kevin Rhee",
+    "title": "Quantum neural architecture search with quantum circuits metric and bayesian optimization",
+    "venue": "ICML 2022 AI for Science Workshop",
+    "year": "2022",
+    "url": "https://arxiv.org/abs/2206.14115"
   }
 }
